@@ -28,5 +28,10 @@ public class ErrorHandler {
 	public ResponseEntity<String> userDataNotfoundHandler(UsersDataNotFoundException ex) {
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<String> duplicateEmailfoundHandler(DuplicateEmailFoundException ex) {
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	}
 
 }
