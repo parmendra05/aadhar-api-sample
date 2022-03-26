@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pack.entity.UsersData;
+import com.pack.error.DuplicateEmailFoundException;
 import com.pack.error.UsersDataNotFoundException;
 import com.pack.repository.UsersRepo;
 import com.pack.request.RequestPayloads;
@@ -20,14 +21,12 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	private AdharGenerator adharGenerator;
 
-//How to change status code 201 to 400, if ID not created line 30
 	@Override
 	public String createAdhar(RequestPayloads paylods) {
 		UsersData usersData = new UsersData();
-		// verify user exist in DB or not ?
 		UsersData data = repo.findByEmail(paylods.getEmail());
 		if (data != null) {
-			return "ID already created with given Email";
+			throw new DuplicateEmailFoundException("ID already created with given Email");
 		} else {
 			String generatedAdhar = "" + adharGenerator.generate();
 
@@ -49,7 +48,7 @@ public class UsersServiceImpl implements UsersService {
 		logger.info("Provided Email is  :" + email);
 		UsersData adhar = repo.findByEmail(email);
 		if (adhar == null) {
-			return "Please create generate your adhar , Adhar doesn't exist";
+			throw new UsersDataNotFoundException("Invalid Email");
 		}
 		return adhar.getAdhar();
 	}
@@ -61,7 +60,7 @@ public class UsersServiceImpl implements UsersService {
 		if (data != null)
 			return data;
 		else
-			throw new UsersDataNotFoundException("Adhar doesn't exist");
+			throw new UsersDataNotFoundException("Invalid Adhar");
 	}
 
 }

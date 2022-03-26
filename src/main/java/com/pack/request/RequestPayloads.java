@@ -2,6 +2,7 @@ package com.pack.request;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class RequestPayloads {
@@ -11,6 +12,7 @@ public class RequestPayloads {
 	private LocalDate dob;
 	private String gendar;
 	@NotBlank(message = "Email Field Can't be Empty")
+	@Email(message = "provide valid Email")
 	private String email;
 	@NotBlank(message = "Address Field Can't be Empty")
 	private String address;
