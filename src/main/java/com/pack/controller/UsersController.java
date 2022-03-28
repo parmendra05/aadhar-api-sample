@@ -28,15 +28,12 @@ public class UsersController {
 		return new ResponseEntity<>(adharinfo, HttpStatus.CREATED);
 	}
 
-	// I have doubts here,on line 33 and 40 ,How to hide 'key' from url ?
-	//@GetMapping(value = "/get/{email}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@GetMapping("/get/{email}")
 	public ResponseEntity<String> getAdhar(@RequestParam String email) {
 		String adhar = service.getMyAdhar(email);
 		return new ResponseEntity<>(adhar, HttpStatus.OK);
 	}
-  //line 32 & 39 commented due to 415 error
-	//@GetMapping(value = "/getOne/{adhar}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+ 
 	@GetMapping("/getOne/{adhar}")
 	public ResponseEntity<UsersData> getUsersData(@RequestParam String adhar) {
 		UsersData userDetails = service.getUserDetails(adhar);
