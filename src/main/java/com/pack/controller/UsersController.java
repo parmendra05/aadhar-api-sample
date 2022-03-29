@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,13 +30,13 @@ public class UsersController {
 	}
 
 	@GetMapping("/get/{email}")
-	public ResponseEntity<String> getAdhar(@RequestParam String email) {
+	public ResponseEntity<String> getAdhar(@PathVariable ("email") String email) {
 		String adhar = service.getMyAdhar(email);
 		return new ResponseEntity<>(adhar, HttpStatus.OK);
 	}
  
 	@GetMapping("/getOne/{adhar}")
-	public ResponseEntity<UsersData> getUsersData(@RequestParam String adhar) {
+	public ResponseEntity<UsersData> getUsersData(@PathVariable ("adhar") String adhar) {
 		UsersData userDetails = service.getUserDetails(adhar);
 		return new ResponseEntity<>(userDetails, HttpStatus.OK);
 	}
