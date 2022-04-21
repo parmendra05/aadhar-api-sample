@@ -37,6 +37,25 @@ public class RequestPayloads {
 		return address;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setMob(String mob) {
+		this.mob = mob;
+	}
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
+	public void setGendar(String gendar) {
+		this.gendar = gendar;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	
 	
 	
