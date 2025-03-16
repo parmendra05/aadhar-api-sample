@@ -39,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
 			usersData.setAdhar(generatedAdhar);
 
 			repo.save(usersData);
-			return "Adhhar created ";
+			return "Aadhar creation successful";
 		}
 	}
 
@@ -55,12 +55,23 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public UsersData getUserDetails(String adhar) {
-		logger.info("Provided adhar is  :" + adhar);
+		logger.info("Provided aadhar is  :" + adhar);
 		UsersData data = repo.findByAdhar(adhar);
 		if (data != null)
 			return data;
 		else
-			throw new UsersDataNotFoundException("Invalid Adhar");
+			throw new UsersDataNotFoundException("Invalid Aadhar, Please try with correct Aadhar number");
+	}
+
+	@Override
+	public Boolean aadharValidation(String adhar) {
+		UsersData data = repo.findByAdhar(adhar);
+
+		/* if (data != null) return true;
+		else return false;
+		// below lines are simplified form of if else condition
+		 */
+        return data != null;
 	}
 
 }

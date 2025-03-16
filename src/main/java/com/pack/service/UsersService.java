@@ -11,6 +11,6 @@ public interface UsersService {
 
 	UsersData getUserDetails(String adhar);
 
-	
 
+	Boolean aadharValidation(String adhar);
 }

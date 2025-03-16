@@ -23,22 +23,28 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 
-	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/createNewAadhar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> createAdhar(@Valid @RequestBody RequestPayloads paylods) {
 		String adharinfo = service.createAdhar(paylods);
 		return new ResponseEntity<>(adharinfo, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/get/{email}")
+	@GetMapping("/getAadharByEmail/{email}")
 	public ResponseEntity<String> getAdhar(@PathVariable ("email") String email) {
 		String adhar = service.getMyAdhar(email);
 		return new ResponseEntity<>(adhar, HttpStatus.OK);
 	}
  
-	@GetMapping("/getOne/{adhar}")
+	@GetMapping("/getUserByAadhar/{adhar}")
 	public ResponseEntity<UsersData> getUsersData(@PathVariable ("adhar") String adhar) {
 		UsersData userDetails = service.getUserDetails(adhar);
 		return new ResponseEntity<>(userDetails, HttpStatus.OK);
+	}
+
+	@GetMapping("/ValidateAadhar/{adhar}")
+	public ResponseEntity<Boolean> aadharValidation(@PathVariable ("adhar") String adhar) {
+		Boolean status = service.aadharValidation(adhar);
+		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
 
 }
