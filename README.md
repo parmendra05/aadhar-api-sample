@@ -1,4 +1,6 @@
 # aadhar-api-sample
-<img width="456" alt="image" src="https://github.com/user-attachments/assets/3f6b14e4-3c58-40d3-874a-98b2d65070cc" />
+## API's Details
+<img width="945" alt="image" src="https://github.com/user-attachments/assets/af312304-fcde-4d5f-8409-2294f4aaf392" />
+
 
 
